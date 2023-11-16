@@ -1,29 +1,20 @@
 import express from "express";
+import {
+  getContacts,
+  getContact,
+  createContact,
+  updateContact,
+  deleteContact,
+} from "../controllers/contactControllers.js";
 
 export const router = express.Router();
 
-router.route("/").get((req, res) => {
-  return res.status(200).json({ message: "All Contacts" });
-});
+router.route("/").get(getContacts);
 
-router.route("/:id").get((req, res) => {
-  return res
-    .status(200)
-    .json({ message: "Contact with id : " + req.params.id });
-});
+router.route("/").post(createContact);
 
-router.route("/").post((req, res) => {
-  return res.status(200).json({ message: "create" });
-});
+router.route("/:id").get(getContact);
 
-router.route("/:id").put((req, res) => {
-  return res
-    .status(200)
-    .json({ message: "Update Contact with id : " + req.params.id });
-});
+router.route("/:id").put(updateContact);
 
-router.route("/:id").delete((req, res) => {
-  return res
-    .status(200)
-    .json({ message: "Delete Contact  with id : " + req.params.id });
-});
+router.route("/:id").delete(deleteContact);
