@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import { router as contactRoutes } from "./routes/contactRoutes.js";
+import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/contacts", contactRoutes);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server started on port : ${PORT}`);

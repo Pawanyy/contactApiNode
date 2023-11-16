@@ -9,6 +9,13 @@ export const getContact = (req, res) => {
 };
 
 export const createContact = (req, res) => {
+  const { name, phone, email } = res.body;
+
+  if (!name || !phone || !email) {
+    res.status(400);
+    throw new Error("All fields are mandatory !");
+  }
+
   return res.status(200).json({ message: "create" });
 };
 
